@@ -1,0 +1,112 @@
+---
+title: "Ait_R_Q&A"
+author: "MANO HARSHA SAPPA"
+date: "2024-04-26"
+output: html_document
+---
+### Cleaned up everything in Python, now switching to R for my research questions. Different tool, new adventure. Let's dive in and uncover insights!
+#### 1. What are the trends in recycling diversion rates and capture rates for different community districts in New York City from 2016 to 2019?
+#### 2. What are the potential environmental and economic implications of the observed trends in recycling diversion and capture rates in New York City? 
+#### 3. How do fluctuations in seasonality, as denoted by Fiscal Month Number and Month Name, affect the Diversion Rate-Total and Capture Rates, shedding light on the temporal patterns of recycling performance? 
+
+
+```{r}
+RDCR = read.csv("/Users/manoharshasappa/Desktop/AIT 580/Final Project Ait 580/Cleaned_Recycling_Diversion_Capture_Rates.csv")
+```
+
+
+```{r}
+str(RDCR)
+```
+
+### 
+```{r}
+summary(RDCR)
+```
+### 
+```{r}
+library(psych)
+describe(RDCR)
+```
+### 
+```{r}
+colnames(RDCR)
+```
+
+### 
+```{r}
+library(ggplot2)
+library(plotly)
+sumcbd=summary_RDCR %>%group_by(Fiscal.Year, Month.Name) %>%summarise(Mean_Recycling_Efficiency = mean(Mean_Recycling_Efficiency))
+sum16=sumcbd %>% filter(Fiscal.Year == 2016)sum17=sumcbd %>% filter(Fiscal.Year == 2017)
+sum18=sumcbd %>% filter(Fiscal.Year == 2018)sum19=sumcbd %>% filter(Fiscal.Year == 2019)
+
+```
+
+### 2016
+```{r}
+ggplot(sum16, aes(x = factor(Month.Name, levels = month.name), y = Mean_Recycling_Efficiency)) +
+geom_bar(stat = "identity", aes(fill = Month.Name), show.legend = TRUE) +  
+scale_fill_manual(values = c("darkblue", "darkgreen", "darkred", "darkorange", "darkcyan", "darkmagenta", "darkgoldenrod", "darkolivegreen", "darkorchid", "darkseagreen", "darkslategray", "darkturquoise")) +labs(x = "Month", y = "Mean Recycling Efficiency") +theme_minimal() +
+theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(size = 12), axis.title.x = element_text(size = 20, face = "bold", hjust = 0.5),
+axis.title.y = element_text(size = 14, face = "bold", hjust = 0.5), plot.title = element_text(size = 16, face = "bold", hjust = 0.5), plot.margin = margin(50, 50, 50, 50)) +ggtitle("Mean Recycling Efficiency (2016)")
+
+```
+
+
+### 2017
+```{r}
+ggplot(sum17, aes(x = factor(Month.Name, levels = month.name), y = Mean_Recycling_Efficiency)) +
+geom_bar(stat = "identity", aes(fill = Month.Name)) +
+scale_fill_manual(values = c("darkblue", "darkgreen", "darkred", "darkorange", "darkcyan", "darkmagenta", "darkgoldenrod", "darkolivegreen", "darkorchid", "darkseagreen", "darkslategray", "darkturquoise")) +labs(x = "Month", y = "Mean Recycling Efficiency") +theme_minimal() +theme(axis.text.x = element_text(angle = 45, hjust = 1),
+axis.text.y = element_text(size = 12),axis.title.x = element_text(size = 20, face = "bold", hjust = 0.5),axis.title.y = element_text(size = 14, face = "bold", hjust = 0.5),  
+plot.title = element_text(size = 16, face = "bold", hjust = 0.5), plot.margin = margin(50, 50, 50, 50)) +ggtitle("Mean Recycling Efficiency (2017)")
+
+```
+### 2018
+```{r}
+ggplot(sum18, aes(x = factor(Month.Name, levels = month.name), y = Mean_Recycling_Efficiency)) +
+geom_bar(stat = "identity", aes(fill = Month.Name)) + scale_fill_manual(values = c("darkblue", "darkgreen", "darkred", "darkorange", "darkcyan", "darkmagenta", "darkgoldenrod", "darkolivegreen", "darkorchid", "darkseagreen", "darkslategray", "darkturquoise")) + 
+labs(x = "Month", y = "Mean Recycling Efficiency") +theme_minimal() +theme(axis.text.x = element_text(angle = 45, hjust = 1),axis.text.y = element_text(size = 12),
+axis.title.x = element_text(size = 20, face = "bold", hjust = 0.5),  axis.title.y = element_text(size = 14, face = "bold", hjust = 0.5),  
+plot.title = element_text(size = 16, face = "bold", hjust = 0.5),  plot.margin = margin(50, 50, 50, 50)) +ggtitle("Mean Recycling Efficiency (2018)")
+```
+### 2019
+```{r}
+ggplot(sum19, aes(x = factor(Month.Name, levels = month.name), y = Mean_Recycling_Efficiency)) +geom_bar(stat = "identity", aes(fill = Month.Name)) +  
+scale_fill_manual(values = c("darkblue", "darkgreen", "darkred", "darkorange", "darkcyan", "darkmagenta", "darkgoldenrod", "darkolivegreen", "darkorchid", "darkseagreen", "darkslategray", "darkturquoise")) + labs(x = "Month", y = "Mean Recycling Efficiency") +theme_minimal() +
+theme(axis.text.x = element_text(angle = 45, hjust = 1),axis.text.y = element_text(size = 12),axis.title.x = element_text(size = 20, face = "bold", hjust = 0.5),  
+axis.title.y = element_text(size = 14, face = "bold", hjust = 0.5),  plot.title = element_text(size = 16, face = "bold", hjust = 0.5),  
+plot.margin = margin(50, 50, 50, 50)) +ggtitle("Mean Recycling Efficiency (2019)")
+```
+####
+2. What are the potential environmental and economic implications of the observed trends in recycling diversion and capture rates in New York City? 
+```{r}
+summary(TCE=RDCR$Total.Capture.Efficiency)
+avgrate=mean(RDCR$Total.Capture.Efficiency)
+MRE=mean(RDCR$Recycling.Efficiency)
+cat("The average recycling efficiency in New York City is:", MRE)
+
+```
+
+
+```{r}
+if (avgrate > 0) {cat("\nPotential environmental implications:\n")cat("- Resource conservation\n")
+cat("- Reduced pollution\n")cat("- Energy savings\n")
+cat("- Waste reduction\n\n")
+  
+cat("Potential economic implications:\n")cat("- Cost savings\n")cat("- Revenue generation\n")
+cat("- Job creation\n")cat("- Market stability\n")
+}else {cat("\nNo environmental or economic implications can be inferred from the data.\n")}
+```
+### 3. How do fluctuations in seasonality, as denoted by Fiscal Month Number and Month Name, affect the Diversion Rate-Total and Capture Rates, shedding light on the temporal patterns of recycling performance?
+```{r}
+library(plotly)
+p1 <- ggplot(RDCR, aes(x = Month.Name, y = Total.Capture.Efficiency)) +geom_bar(stat = "identity", fill = "blue") +
+labs(title = "Total Capture Efficiency by Month",x = "Month",y = "Total Capture Efficiency (%)") +ylim(0, 60) +  
+theme_minimal() +theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p2 <- ggplot(RDCR, aes(x = Month.Name, y = Recycling.Efficiency)) +geom_bar(stat = "identity", fill = "red") +
+labs(title = "Recycling Efficiency by Month",x = "Month",y = "Recycling Efficiency (%)") +ylim(0, max(RDCR$Recycling.Efficiency, na.rm = TRUE) * 1.1) +  
+theme_minimal() +theme(axis.text.x = element_text(angle = 45, hjust = 1))
+subplot(p1, p2)
+```

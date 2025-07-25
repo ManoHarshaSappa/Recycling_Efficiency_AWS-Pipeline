@@ -1,0 +1,101 @@
+/* Base Styling */
+body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #2c2c2c;
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.6;
+  }
+  
+  /* Headings */
+  h1, h2, h3, h4 {
+    color: #1a1a1a;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.3rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    border-left: 4px solid #007acc;
+    padding-left: 0.5rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  /* Paragraphs */
+  p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  
+  /* Lists */
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Code Blocks */
+  code {
+    background-color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  
+  pre {
+    background-color: #eee;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 0.6rem;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #e6f2ff;
+  }
+  
+  /* Blockquotes */
+  blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background-color: #f3f3f3;
+    border-left: 6px solid #007acc;
+    color: #333;
+    font-style: italic;
+  }
+  
+  /* Footer / Contact Section */
+  .footer {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 2rem;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+  }
+  
